@@ -1,0 +1,29 @@
+// JavaScript program to find the rare number
+// in an array.
+function nth_most_rate(list, n)
+{
+// Sort the array
+list.sort();
+let min_count = n+1, rare= -1;
+let curr_count = 1;
+for (let i = 1; i < n; i++) {
+if (list[i] == list[i - 1])
+curr_count++;
+else {
+if (curr_count < min_count) {
+min_count = curr_count;
+rare = list[i - 1];
+}
+curr_count = 1;
+}
+}
+// If last element is least frequent
+if (curr_count < min_count)
+{
+min_count = curr_count;
+rare = list[n - 1];
+}
+return rare;
+}
+let list = [5,4,5,4,5,4,4,5,3,3,3,2,2,1,5];
+console.log(nth_most_rate(list,2));
